@@ -58,6 +58,12 @@ const HeroSection = styled.div`
     z-index: 1;
     position: relative;
   }
+
+  @media(max-width:428px){
+  h1{
+  font-size:2.4rem;
+  }
+  }
 `;
 
 const Section = styled.div`

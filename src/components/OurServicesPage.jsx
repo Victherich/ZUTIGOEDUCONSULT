@@ -248,7 +248,7 @@ const Services = () => {
       <ServicesSection id="myContainer">
         <Sidebar>
          
-            <TabButton 
+            <TabButton s 
             style={{backgroundColor:activeIndex===1?"#ff6600":"",
                 color:activeIndex===1?"white":"",
             }}

@@ -4,6 +4,7 @@ import { FaCheckCircle, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import OurProcess from "./OurProcess";
 import FloatingQuotes from "./FloatingQuotes";
 import { useNavigate } from "react-router-dom";
+import OurProcess2 from "./OurProcess2";
 
 const Home = () => {
       const navigate = useNavigate()
@@ -21,7 +22,8 @@ const Home = () => {
         <h2>About Zutigo EduConsult</h2>
         <p>We provide expert guidance for students seeking education abroad.</p>
       </AboutSection> */}
-      <OurProcess/>
+      {/* <OurProcess/> */}
+      <OurProcess2/>
 
       {/* <ServicesSection>
         <h2>Our Services</h2>

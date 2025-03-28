@@ -4,25 +4,28 @@ import Slider from "react-slick";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import ts1 from '../Images/ts1.jpg'
+import ts2 from '../Images/ts2.jpg'
+import ts3 from '../Images/ts3.jpg'
 
 const testimonials = [
   {
     quote: "Zutigo EduConsult made my dream of studying abroad a reality. Their support and guidance were invaluable!",
     name: "Sarah Johnson",
     position: "International Student",
-    image: "https://randomuser.me/api/portraits/women/1.jpg"
+    image: ts1,
   },
   {
     quote: "Their expertise in the admission process is unmatched. Highly recommended for anyone seeking higher education abroad.",
-    name: "Michael Lee",
+    name: "Michael Ekene",
     position: "University Applicant",
-    image: "https://randomuser.me/api/portraits/men/2.jpg"
+    image: ts2
   },
   {
     quote: "Professional, reliable, and extremely helpful! They simplified the entire process for me.",
     name: "Emily Davis",
     position: "Graduate Student",
-    image: "https://randomuser.me/api/portraits/women/3.jpg"
+    image: ts3
   }
 ];
 

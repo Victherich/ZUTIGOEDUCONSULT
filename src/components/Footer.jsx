@@ -174,9 +174,51 @@ import React from "react";
 import styled from "styled-components";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useState } from "react";
 
 const Footer = () => {
     const navigate = useNavigate()
+    const [email, setEmail] = useState("");
+
+    const handleSubscribe = async (e) => {
+      e.preventDefault();
+  
+      if (!email) {
+        Swal.fire("Error!", "Please enter a valid email address.", "error");
+        return;
+      }
+  
+      // Show loading alert
+      Swal.fire({
+        title: "Subscribing...",
+        text: "Please wait while we add you to our newsletter.",
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+  
+      try {
+        const response = await fetch("https://zutigoeduconsult.com/api/newsletter_subscribe.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+  
+        const result = await response.json();
+  
+        if (result.success) {
+          Swal.fire("Success!", result.message, "success");
+          setEmail(""); // Reset email field
+        } else {
+          Swal.fire("Error!", result.error, "error");
+        }
+      } catch (error) {
+        Swal.fire("Error!", "Something went wrong. Please try again.", "error");
+      }
+    };
+
   return (
     <FooterContainer>
       <FooterContent>
@@ -210,8 +252,14 @@ const Footer = () => {
         {/* Newsletter Signup */}
         <FooterSection>
           <h3>Subscribe to Our Newsletter</h3>
-          <NewsletterForm>
-            <input type="email" placeholder="Enter your email" />
+          <NewsletterForm onSubmit={handleSubscribe}> 
+          <input
+          type="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
             <button type="submit">Subscribe</button>
           </NewsletterForm>
           <SocialIcons>
@@ -232,6 +280,7 @@ const Footer = () => {
        {/* Office Addresses */}
        <FooterSection style={{marginTop:"40px"}}>
           <h3>Our Offices</h3>
+          <Div>
           <AddressBlock>
             <p><FaMapMarkerAlt /> <strong>Abuja Office:</strong></p>
             <p>SUIT 036, Majia Plaza, 6th Avenue, Gwarinpa, Abuja.</p>
@@ -249,6 +298,7 @@ const Footer = () => {
             <p>76, Ken Saro Wiwa (Stadium Road), Port Harcourt, Rivers State.</p>
             <p><FaPhone /> +234 902 243 6649 | +234 703 860 7040</p>
           </AddressBlock>
+          </Div>
         </FooterSection>
 
       {/* Copyright */}
@@ -315,6 +365,7 @@ const AddressBlock = styled.div`
   padding: 10px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
+  width:100%;
 
   p {
     margin: 5px 0;
@@ -382,6 +433,18 @@ const Copyright = styled.div`
   margin-top: 40px;
   border-top: 1px solid #444;
 `;
+
+const Div = styled .div`
+display:flex;
+gap:10px;
+jusify-content:center;
+align-items:center;
+
+@media(max-width:768px){
+  flex-direction:column;
+}
+
+`
 
 export default Footer;
 
