@@ -82,7 +82,7 @@ const StudyInScotland = () => {
         </ProcedureList>
         <ProcessingFee>
           <FaMoneyBillWave className="icon" />
-          <p><strong>Application | Processing Fee | Service Charge:</strong> ₦100,000</p>
+          <p><strong>Application | Processing Fee | Service Charge:</strong> ₦200,000</p>
         </ProcessingFee>
       </ProcedureSection>
 

@@ -2,21 +2,26 @@
 import React from "react";
 import styled from "styled-components";
 import { FaCheckCircle, FaMoneyBillWave, FaHome, FaClock, FaBusinessTime, FaMapMarkedAlt, FaFlask, FaUniversity,FaUserGraduate, FaExchangeAlt, FaBriefcase, FaGlobe, FaBook, FaCameraRetro } from "react-icons/fa";
-import heroImage from "../Images/uk4.jpg";
-import gallery1 from "../Images/uk2.jpg";
-import gallery2 from "../Images/uk3.jpg";
-import gallery3 from "../Images/uk1.png";
+import heroImage from "../Images/aust9.jpg";
+import gallery1 from "../Images/aust1.jpg";
+import gallery2 from "../Images/aust2.png";
+import gallery3 from "../Images/aust3.jpg";
 import gallery4 from "../Images/sct2.jpg";
-import gallery5 from "../Images/sct3.jpg";
+import gallery5 from "../Images/aust5.jpg";
+import gallery6 from "../Images/aust6.jpg";
+import gallery7 from "../Images/aust7.jpg";
+import aust4 from '../Images/aust4.jpg'
 import sct4 from '../Images/uk4.jpg'
+import StudyInAustraliaExtension2 from "./StudyInAustraliaExtension2";
 
-const StudyInUk = () => {
+
+const StudyInAustralia = () => {
   return (
     <PageContainer >
       {/* Hero Section */}
       <HeroSection >
         <HeroContent >
-          <h1>STUDY AND WORK IN THE UK</h1>
+          <h1>STUDY IN AUSTRALIA</h1>
          
           {/* <p>Canada is a very fantastic place to study, work and live in. The quality of life is very great and it’s ranked first in the world in terms of quality standard of living.</p> */}
     
@@ -25,50 +30,64 @@ const StudyInUk = () => {
 
       {/* About Section */}
       <AboutSection>
-        <h2 style={{color:"#ff6600"}}>STUDY AND WORK IN THE UK</h2>
-        <p>The UK is one of the most popular countries to travel to, to earn an education. Generations of international students have come to the UK for their education, which means that British universities have decades of experience in working with international students.</p>
+        <h2 style={{color:"#ff6600"}}>STUDY IN AUSTRALIA</h2>
         <p>
-        The United Kingdom (UK) is home to some of the world’s oldest universities and colleges having their roots in the 12th and 13th centuries. Coming from such a strong legacy, education in the UK has become a benchmark for other countries.
-        </p>
+There are abundant reasons why students choose Australia.
+Australia is a great country to study in Australia. The climate is perfect for students, and the scenery is incredible. The beaches are some of the best in the world, and there are plenty of opportunities to surf, hike, and explore. The culture is also very laid-back and easygoing, which makes it a great place to live while you study. A new study has found that studying in Australia may be the key to a successful career. The study, which was conducted by the University of Melbourne, found that students who study in Australia are more likely to find employment after graduation than those who don’t.
+</p>
         <p>
-        Foreign students do not only get the chance to earn an excellent education, but they also find ways of enjoying their stay in the UK.
+        The study surveyed over 1,000 graduates from around the world and found that Australian students were more likely to be employed full-time six months after graduation. They were also more likely to be employed in their field of study and to have higher salaries than their counterparts who didn’t study in Australia. </p>
+      
+      
+
+
+
+
+        <h2 style={{ color: "#444" }}>Reasons to Study in Australia</h2>
+        <p>
+        There are many reasons why students choose to study in Australia. The country has a great education system, and there are many opportunities to work and travel while you study. The climate is also perfect for students who want to experience all four seasons. Australia is a very diverse country, and you can meet people from all over the world while you study here.
         </p>
-        <img src={gallery2} alt="gallery2"/>
-        <h2 style={{ color: "#444" }}>Reasons to Study in the UK</h2>
         <FeatureGrid>
   <FeatureCard>
+    <FaMoneyBillWave className="icon" />
+    <h3>COST OF STUDYING</h3>
+    <p>Australia is an expensive country to live in, but scholarships and grants are available to help students with the cost of living and studying. The Australian government offers a range of scholarships and grants to help international students with the cost of living and studying in Australia. There are also several private scholarships and grants available.</p>
+  <p>
+  The cost of living in Australia depends on your lifestyle. If you live modestly, you can expect to spend around $18,000 per year on essentials like food, accommodation, utilities, and transport. If you live a little more extravagantly, your costs could be closer to $24,000 per year. Of course, if you share accommodation or have other ways to save money, your costs will be lower.
+  </p>
+  <p>
+  Tuition fees for international students vary depending on the institution and course you choose.
+  </p>
+  </FeatureCard>
+
+  <FeatureCard>
     <FaBriefcase className="icon" />
-    <h3>POST STUDY WORK PERMIT</h3>
-    <p>As an international student, studying in the UK, you can start working after graduation.</p>
+    <h3>WORK</h3>
+    <p>Australia offers a variety of work opportunities for international students. Many students are able to find part-time work in addition to their studies, which can help offset the cost of living and tuition. Additionally, there are many opportunities for internships and volunteer work. These experiences can provide valuable skills and experience that can be helpful in securing full-time employment after graduation.</p>
+    <p>
+    There are a number of resources available to help students find employment in Australia. The Australian Government’s Job Search website is a good place to start your search. Additionally, your university’s career center can provide information about job postings and employer fairs. Networking is also a key way to find employment in Australia. Attend events and meetups related to your field of interest, and get connected with professionals who may have leads on job openings.
+    </p>
   </FeatureCard>
 
-  <FeatureCard>
-    <FaUniversity className="icon" />
-    <h3>ACADEMIC EXCELLENCE</h3>
-    <p>Universities in the UK have the best academic standards in the world. Four out of the top 10 universities in the world are from the UK.</p>
-  </FeatureCard>
 
-  <FeatureCard>
-    <FaCheckCircle className="icon" />
-    <h3>QUALITY EDUCATION</h3>
-    <p>The Quality Assurance Agency (QAA) is an independent body in the UK that regularly assesses the education standards of all universities and colleges in the country so UK universities have high standards. This ensures they maintain excellent standards in learning, teaching, and research.</p>
-  </FeatureCard>
 
-  <FeatureCard>
-    <FaClock className="icon" />
-    <h3>SHORTER DURATION OF COURSES</h3>
-    <p>While you can complete an undergraduate program in three years, you’ll be able to finish a graduate program in just one year.</p>
-  </FeatureCard>
-
-  <FeatureCard>
-    <FaBusinessTime className="icon" />
-    <h3>WORK WHILE YOU LEARN</h3>
-    <p>You can work part-time for up to 20 hours a week during term time. You can even work full-time during your semester break. Students get a post-study work permit to work after graduation.</p>
-  </FeatureCard>
 </FeatureGrid>
 
 
       </AboutSection>
+
+
+        {/* Gallery */}
+        <GallerySection>
+        <h2>Explore Life in Australia</h2>
+        <GalleryGrid>
+          <img src={gallery5} alt="Scotland University" />
+          <img src={gallery6} alt="Students in Scotland" />
+          <img src={gallery7} alt="Scotland Landscape" />
+          {/* <img src={gallery4} alt="University in Scotland" /> */}
+          {/* <img src={gallery5} alt="Scottish Student Life" /> */}
+        </GalleryGrid>
+      </GallerySection>
 
       {/* Application Procedures */}
       <ProcedureSection>
@@ -92,13 +111,13 @@ const StudyInUk = () => {
 
         <ProcessingFee>
           <FaMoneyBillWave className="icon" />
-          <p><strong>Application | Visa Support fee: </strong> From ₦100,000</p>
+          <p><strong>Application | Visa Support fee: </strong> From ₦250,000</p>
         </ProcessingFee>
       </ProcedureSection>
 
       {/* Tuition Info */}
       <TuitionSection>
-        <h2>Basic Information About Studying in United Kingdom</h2>
+        <h2>Basic Information About Studying in Australia</h2>
       <InfoGrid>
   <InfoCard>£2000 to £4,000 part payment of tuition deposit is expected to be paid to the university before visa application/traveling.</InfoCard>
   <InfoCard>Admission processing duration: 2 - 3 weeks.</InfoCard>
@@ -115,7 +134,7 @@ const StudyInUk = () => {
 
       {/* Gallery */}
       <GallerySection>
-        <h2>Explore Life in United Kingdom</h2>
+        <h2>Explore Life in Australia</h2>
         <GalleryGrid>
           <img src={gallery1} alt="Scotland University" />
           <img src={gallery2} alt="Students in Scotland" />
@@ -199,7 +218,7 @@ const FeatureGrid = styled.div`
   gap: 20px;
   justify-content: center;
   padding:50px 5px;
-  background-image:url(${sct4});
+  background-image:url(${aust4});
   background-size:cover;
 `;
 
@@ -332,5 +351,5 @@ const TableData = styled.td`
   color: #333;
 `;
 
-export default StudyInUk;
+export default StudyInAustralia;
 

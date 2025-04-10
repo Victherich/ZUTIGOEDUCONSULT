@@ -19,6 +19,8 @@ import im15 from "../Images/im15.jpg";
 import im16 from "../Images/im16.png";
 import SubHero3 from "./SubHero3";
 import GeneralFee from "./GeneralFeeComponent";
+import StudyInBarbadosExtension1 from "./StudyInBarbadosExtension1";
+import StudyInBarbadosExtension2 from "./StudyInBarbadosExtension2";
 
 // Styled Components
 const Container = styled.div`
@@ -260,6 +262,8 @@ Studying at the University of Luxembourg is a uniquely enriching experience. The
 
         </GalleryGrid>
       </Section>
+      <StudyInBarbadosExtension1/>
+      <StudyInBarbadosExtension2/>
     </Container>
   );
 };

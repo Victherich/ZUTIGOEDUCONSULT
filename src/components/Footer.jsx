@@ -263,7 +263,7 @@ const Footer = () => {
             <button type="submit">Subscribe</button>
           </NewsletterForm>
           <SocialIcons>
-            <a href="#"><FaFacebook /></a>
+            <a href="https://www.facebook.com/share/15QkxVutpf/" target="_blank"><FaFacebook /></a>
             <a href="#"><FaTwitter /></a>
             <a href="#"><FaInstagram /></a>
             <a href="#"><FaLinkedin /></a>

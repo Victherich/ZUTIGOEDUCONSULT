@@ -84,7 +84,7 @@ const StudyInCyprus = () => {
         </ProcedureList>
         <ProcessingFee>
           <FaClipboardList className="icon" />
-          <p><strong>Application | Processing Fee | Service Charge:</strong> ₦200,000</p>
+          <p><strong>Application | Processing Fee | Service Charge:</strong> ₦250,000</p>
         </ProcessingFee>
       </ProcedureSection>
 

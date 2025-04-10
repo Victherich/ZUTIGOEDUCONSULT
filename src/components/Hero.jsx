@@ -331,8 +331,8 @@ const Hero = () => {
             At Zutigo EduConsult, we guide you in choosing the right path for
             your academic and career success abroad.
           </p>
-          <HeroButton onClick={() => navigate("/contactus")}>
-            Get Started
+          <HeroButton onClick={() => navigate("/application")}>
+            Apply Now
           </HeroButton>
         </HeroContent>
       </HeroOverlay>

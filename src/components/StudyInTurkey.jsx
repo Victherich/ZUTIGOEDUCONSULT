@@ -90,7 +90,7 @@ const StudyInTurkey = () => {
 
       {/* Tuition Info */}
       <TuitionSection>
-        <h2>Basic Information About Studying in Scotland</h2>
+        <h2>Basic Information About Studying in Turkey</h2>
         <InfoGrid>
           <InfoCard>Deposit of $1000 of tuition fees is expected to be paid directly to the university before visa application/traveling</InfoCard>
           <InfoCard>Admission processing duration: 1 - 2 weeks</InfoCard>
@@ -116,7 +116,7 @@ const StudyInTurkey = () => {
 
       {/* Gallery */}
       <GallerySection>
-        <h2>Explore Life in Scotland</h2>
+        <h2>Explore Life in Turkey</h2>
         <GalleryGrid>
           <img src={gallery1} alt="Scotland University" />
           <img src={gallery2} alt="Students in Scotland" />

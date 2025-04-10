@@ -69,8 +69,12 @@ useEffect(() => {
         <NavItem onClick={()=>{navigate('/studyincanada');setShowDropDown(false);setMenuOpen(false)}} style={{color:"",fontSize:"1rem",marginBottom:"10px"}}>Study in Canada</NavItem>
         <NavItem onClick={()=>{navigate('/studyinuk');setShowDropDown(false);setMenuOpen(false)}} style={{color:"",fontSize:"1rem",marginBottom:"10px"}}>Study in United Kingdom</NavItem>
         <NavItem onClick={()=>{navigate('/studyingeorgia');setShowDropDown(false);setMenuOpen(false)}} style={{color:"",fontSize:"1rem",marginBottom:"10px"}}>Study in Georgia</NavItem>
+        <NavItem onClick={()=>{navigate('/studyinluxemburg');setShowDropDown(false);setMenuOpen(false)}} style={{color:"",fontSize:"1rem",marginBottom:"10px"}}>Study in Luxemburg</NavItem>
+        <NavItem onClick={()=>{navigate('/studyinaustralia');setShowDropDown(false);setMenuOpen(false)}} style={{color:"",fontSize:"1rem",marginBottom:"10px"}}>Study in Australia</NavItem>
       
       </Dd>}
+      <NavItem onClick={()=>{navigate('/application');setMenuOpen(false)}} style={{color:location.pathname==='/application'?"#ffcc00":""}}>Apply Now</NavItem>
+      
         <NavItem onClick={()=>{navigate('/contactus');setMenuOpen(false)}} style={{color:location.pathname==='/contactus'?"#ffcc00":""}}>Contact</NavItem>
       </NavLinks>
       <MenuIcon >
@@ -129,6 +133,8 @@ const NavLinks = styled.div`
     align-items: center;
     padding: 20px 0;
     transition: left 0.3s ease-in-out;
+    gap:10px;
+ 
   }
 `;
 
@@ -178,7 +184,15 @@ const Dd = styled.div`
   width:100%;
   right:0%;
   top:0%;
+
   }
+
+@media(max-width:320px){
+
+  height:200px;
+  overflow-y:scroll;
+  }
+
 `
 
 

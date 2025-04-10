@@ -104,4 +104,16 @@
   
 }
 
+.WhatsAppIcon3{
+  position: fixed;
+  z-index: 99;
+ bottom: 5%;
+ right: 1%; 
+  width: 70px;
+  box-shadow: 0px 4px 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  
+}
+
     
