@@ -251,7 +251,7 @@ const Footer = () => {
 
         {/* Newsletter Signup */}
         <FooterSection>
-          <h3>Subscribe to Our Newsletter</h3>
+          {/* <h3>Subscribe to Our Newsletter</h3>
           <NewsletterForm onSubmit={handleSubscribe}> 
           <input
           type="email"
@@ -261,7 +261,7 @@ const Footer = () => {
           required
         />
             <button type="submit">Subscribe</button>
-          </NewsletterForm>
+          </NewsletterForm> */}
           <SocialIcons>
             <a href="https://www.facebook.com/share/15QkxVutpf/" target="_blank"><FaFacebook /></a>
             <a href="#"><FaTwitter /></a>

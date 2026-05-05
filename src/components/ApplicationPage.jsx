@@ -427,15 +427,15 @@ const ApplicationPage = () => {
             <Input type="text" name="course" value={formData.course} onChange={handleChange} required />
           </Label>
 
-          <Label>
+          {/* <Label>
             Transcript
             <FileInput type="file" name="transcript" accept="image/*" onChange={handleFileChange} />
-          </Label>
+          </Label> */}
 
-          <Label>
+          {/* <Label>
             Proof of English (IELTS, TOEFL, etc.)
             <FileInput type="file" name="proofOfEnglish" accept="image/*" onChange={handleFileChange} />
-          </Label>
+          </Label> */}
 
           <Label style={{ gridColumn: '1 / -1' }}>
             Message*

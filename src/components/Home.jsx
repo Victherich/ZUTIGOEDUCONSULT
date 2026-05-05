@@ -16,81 +16,11 @@ const Home = () => {
         <p>We are your Trusted Partner for Studying Abroad.</p>
         <button onClick={()=>navigate('/contactus')}>Get Started</button>
       </HeroSection>
-      <FloatingQuotes/>
-{/* 
-      <AboutSection>
-        <h2>About Zutigo EduConsult</h2>
-        <p>We provide expert guidance for students seeking education abroad.</p>
-      </AboutSection> */}
-      {/* <OurProcess/> */}
+      {/* <FloatingQuotes/> */}
+
+
       <OurProcess2/>
 
-      {/* <ServicesSection>
-        <h2>Our Services</h2>
-        <ServiceList>
-          <ServiceCard>
-            <h3>Career Advisory</h3>
-            <p>Personalized guidance for your future career.</p>
-          </ServiceCard>
-          <ServiceCard>
-            <h3>Admission Processing</h3>
-            <p>We streamline your admission journey.</p>
-          </ServiceCard>
-          <ServiceCard>
-            <h3>Visa Assistance</h3>
-            <p>Expert visa counseling services.</p>
-          </ServiceCard>
-        </ServiceList>
-      </ServicesSection> */}
-
-      {/* <ProcessSection>
-        <h2>Our Process</h2>
-        <Step>
-          <FaCheckCircle />
-          <span>Submit Your Documents</span>
-        </Step>
-        <Step>
-          <FaCheckCircle />
-          <span>Accept an Admission Offer</span>
-        </Step>
-        <Step>
-          <FaCheckCircle />
-          <span>Make Payment for Your Fees</span>
-        </Step>
-        <Step>
-          <FaCheckCircle />
-          <span>Start Your Visa Application</span>
-        </Step>
-        <Step>
-          <FaCheckCircle />
-          <span>Arrive at Your University</span>
-        </Step>
-      </ProcessSection> */}
-
-      {/* <WhyChooseUsSection>
-        <h2>Why Choose Us?</h2>
-        <p>We have a proven track record of helping students succeed abroad.</p>
-      </WhyChooseUsSection> */}
-
-      {/* <TestimonialsSection>
-        <h2>Success Stories</h2>
-        <blockquote>
-          "Zutigo EduConsult helped me achieve my dream of studying abroad!"
-        </blockquote>
-        <cite>- A Satisfied Student</cite>
-      </TestimonialsSection> */}
-
-      {/* <ContactSection>
-        <h2>Contact Us</h2>
-        <ContactItem>
-          <FaMapMarkerAlt />
-          <span>Abuja | Lagos | Port Harcourt</span>
-        </ContactItem>
-        <ContactItem>
-          <FaPhoneAlt />
-          <span>+2348174211261 | +2349014444327</span>
-        </ContactItem>
-      </ContactSection> */}
     </Wrapper>
   );
 };
