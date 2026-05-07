@@ -327,26 +327,105 @@ const ApplicationPage = () => {
 
 
 
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    const formDataToSend = new FormData();
-    formDataToSend.append('name', formData.name);
-    formDataToSend.append('phone', formData.phone);
-    formDataToSend.append('email', formData.email);
-    formDataToSend.append('course', formData.course);
-    formDataToSend.append('message', formData.message);
-    if (formData.transcript) formDataToSend.append('transcript', formData.transcript);
-    if (formData.proofOfEnglish) formDataToSend.append('proof_of_english', formData.proofOfEnglish);
-  
-    // Log form data for debugging
-    for (let [key, value] of formDataToSend.entries()) {
-      console.log(`${key}:`, value);
+  try {
+    // Basic frontend validation
+    if (!formData.name || !formData.email || !formData.phone) {
+      return Swal.fire({
+        icon: 'error',
+        title: 'Validation Error',
+        text: 'Please fill all required fields',
+      });
     }
-  
-    // Show loading state
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(formData.email)) {
+      return Swal.fire({
+        icon: 'error',
+        title: 'Invalid Email',
+        text: 'Please enter a valid email address',
+      });
+    }
+
+    // Validate file types
+    const allowedTypes = [
+      'application/pdf',
+      'image/jpeg',
+      'image/png',
+    ];
+
+    // Validate transcript
+    if (formData.transcript) {
+      if (!allowedTypes.includes(formData.transcript.type)) {
+        return Swal.fire({
+          icon: 'error',
+          title: 'Invalid File',
+          text: 'Transcript must be PDF, JPG, or PNG',
+        });
+      }
+
+      // 5MB limit
+      if (formData.transcript.size > 5 * 1024 * 1024) {
+        return Swal.fire({
+          icon: 'error',
+          title: 'File Too Large',
+          text: 'Transcript must be less than 5MB',
+        });
+      }
+    }
+
+    // Validate proof of English
+    if (formData.proofOfEnglish) {
+      if (!allowedTypes.includes(formData.proofOfEnglish.type)) {
+        return Swal.fire({
+          icon: 'error',
+          title: 'Invalid File',
+          text: 'Proof of English must be PDF, JPG, or PNG',
+        });
+      }
+
+      if (formData.proofOfEnglish.size > 5 * 1024 * 1024) {
+        return Swal.fire({
+          icon: 'error',
+          title: 'File Too Large',
+          text: 'Proof of English must be less than 5MB',
+        });
+      }
+    }
+
+    // Honeypot anti-bot field
+    if (formData.website) {
+      return;
+    }
+
+    // Build FormData
+    const formDataToSend = new FormData();
+
+    formDataToSend.append('name', formData.name.trim());
+    formDataToSend.append('phone', formData.phone.trim());
+    formDataToSend.append('email', formData.email.trim());
+    formDataToSend.append('course', formData.course.trim());
+    formDataToSend.append('message', formData.message.trim());
+
+    if (formData.transcript) {
+      formDataToSend.append('transcript', formData.transcript);
+    }
+
+    if (formData.proofOfEnglish) {
+      formDataToSend.append(
+        'proof_of_english',
+        formData.proofOfEnglish
+      );
+    }
+
+    // CSRF token
+    const csrfToken = localStorage.getItem('csrfToken');
+
+    // Loading alert
     Swal.fire({
       title: 'Submitting...',
       text: 'Please wait while we submit your application.',
@@ -357,45 +436,62 @@ const ApplicationPage = () => {
         Swal.showLoading();
       },
     });
-  
-    try {
-      const response = await fetch('https://zutigoeduconsult.com/api/submit_admission_form.php', {
-        method: 'POST',
-        body: formDataToSend,
-      });
-      const result = await response.json();
-  
-      if (result.success) {
 
-        window.location.reload();
-        // Success message
-        Swal.fire({
-          title: 'Success!',
-          text: result.message,
-          icon: 'success',
-          confirmButtonText: 'OK',
-        });
-      } else {
-        // Error message
-        Swal.fire({
-          title: 'Error!',
-          text: result.error || 'Something went wrong. Please try again later.',
-          icon: 'error',
-          confirmButtonText: 'OK',
-        });
+    const response = await fetch(
+      'https://zutigoeduconsult.com/api/submit_admission_form.php',
+      {
+        method: 'POST',
+
+        headers: {
+          'X-CSRF-Token': csrfToken,
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+
+        credentials: 'same-origin',
+
+        body: formDataToSend,
       }
-    } catch (error) {
-      // Network or other error message
+    );
+
+    // Block non-JSON response
+    const contentType = response.headers.get('content-type');
+
+    if (!contentType || !contentType.includes('application/json')) {
+      throw new Error('Invalid server response');
+    }
+
+    const result = await response.json();
+
+    if (result.success) {
+      Swal.fire({
+        title: 'Success!',
+        text: result.message,
+        icon: 'success',
+        confirmButtonText: 'OK',
+      });
+
+      window.location.reload();
+    } else {
       Swal.fire({
         title: 'Error!',
-        text: 'There was an error submitting your form. Please try again later.',
+        text:
+          result.error ||
+          'Something went wrong. Please try again later.',
         icon: 'error',
         confirmButtonText: 'OK',
       });
     }
-  };
-  
+  } catch (error) {
+    console.error(error);
 
+    Swal.fire({
+      title: 'Error!',
+      text: 'Secure submission failed.',
+      icon: 'error',
+      confirmButtonText: 'OK',
+    });
+  }
+};
 
 
 

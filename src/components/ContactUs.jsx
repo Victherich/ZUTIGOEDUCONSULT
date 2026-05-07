@@ -280,54 +280,200 @@ const ContactUs = () => {
     const handleChange = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  try {
+    // =========================
+    // VALIDATION
+    // =========================
 
-    // Show loading alert
+    // Trim inputs
+    const name = formData.name?.trim();
+    const email = formData.email?.trim();
+    const message = formData.message?.trim();
+
+    // Required fields
+    if (!name || !email || !message) {
+      return Swal.fire({
+        title: "Validation Error",
+        text: "All fields are required.",
+        icon: "error",
+        confirmButtonColor: "#ff0000",
+      });
+    }
+
+    // Length limits
+    if (name.length > 100) {
+      return Swal.fire({
+        title: "Validation Error",
+        text: "Name is too long.",
+        icon: "error",
+      });
+    }
+
+    if (message.length > 3000) {
+      return Swal.fire({
+        title: "Validation Error",
+        text: "Message is too long.",
+        icon: "error",
+      });
+    }
+
+    // Email validation
+    const emailRegex =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      return Swal.fire({
+        title: "Invalid Email",
+        text: "Please enter a valid email address.",
+        icon: "error",
+      });
+    }
+
+    // Anti-spam honeypot
+    // Add hidden input named "website"
+    if (formData.website) {
+      return;
+    }
+
+    // =========================
+    // SANITIZE DATA
+    // =========================
+
+    const sanitizedData = {
+      name: name.replace(/[<>]/g, ""),
+      email: email.replace(/[<>]/g, ""),
+      message: message.replace(/[<>]/g, ""),
+    };
+
+    // =========================
+    // SHOW LOADING
+    // =========================
+
     Swal.fire({
       title: "Sending...",
       text: "Please wait while we send your message.",
       allowOutsideClick: false,
+      showConfirmButton: false,
       didOpen: () => {
         Swal.showLoading();
       },
     });
 
-    try {
-      const response = await fetch("https://zutigoeduconsult.com/api/contact_form_endpoint.php", {
+    // =========================
+    // REQUEST TIMEOUT
+    // =========================
+
+    const controller = new AbortController();
+
+    const timeout = setTimeout(() => {
+      controller.abort();
+    }, 15000);
+
+    // =========================
+    // CSRF TOKEN
+    // =========================
+
+    const csrfToken =
+      localStorage.getItem("csrfToken");
+
+    // =========================
+    // SEND REQUEST
+    // =========================
+
+    const response = await fetch(
+      "https://zutigoeduconsult.com/api/contact_form_endpoint.php",
+      {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+
+        signal: controller.signal,
+
+        credentials: "same-origin",
+
+        headers: {
+          "Content-Type": "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+          "X-CSRF-Token": csrfToken || "",
+        },
+
+        body: JSON.stringify(sanitizedData),
+      }
+    );
+
+    clearTimeout(timeout);
+
+    // =========================
+    // VALIDATE RESPONSE TYPE
+    // =========================
+
+    const contentType =
+      response.headers.get("content-type");
+
+    if (
+      !contentType ||
+      !contentType.includes("application/json")
+    ) {
+      throw new Error("Invalid server response");
+    }
+
+    const result = await response.json();
+
+    // =========================
+    // HANDLE RESPONSE
+    // =========================
+
+    if (response.ok && result.success) {
+      Swal.fire({
+        title: "Success!",
+        text:
+          result.message ||
+          "Your message has been sent successfully.",
+        icon: "success",
+        confirmButtonColor: "#004aad",
       });
 
-      const result = await response.json();
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+        website: "", // honeypot
+      });
 
-      if (result.success) {
-        Swal.fire({
-          title: "Success!",
-          text: result.message || "Your message has been sent successfully.",
-          icon: "success",
-          confirmButtonColor: "#004aad",
-        });
-        setFormData({ name: "", email: "", message: "" }); // Reset form
-      } else {
-        Swal.fire({
-          title: "Error!",
-          text: result.error || "Something went wrong. Please try again.",
-          icon: "error",
-          confirmButtonColor: "#ff0000",
-        });
-      }
-    } catch (error) {
+    } else {
       Swal.fire({
         title: "Error!",
-        text: "Failed to send message. Please check your internet connection and try again.",
+        text:
+          result.error ||
+          "Something went wrong. Please try again.",
         icon: "error",
         confirmButtonColor: "#ff0000",
       });
     }
-  };
+
+  } catch (error) {
+
+    console.error(error);
+
+    let errorMessage =
+      "Failed to send message. Please try again later.";
+
+    // Timeout
+    if (error.name === "AbortError") {
+      errorMessage =
+        "Request timed out. Please try again.";
+    }
+
+    Swal.fire({
+      title: "Error!",
+      text: errorMessage,
+      icon: "error",
+      confirmButtonColor: "#ff0000",
+    });
+  }
+};
 
   return (
     <ContactPage>
